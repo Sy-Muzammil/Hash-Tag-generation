@@ -88,57 +88,7 @@ def Seq2Seq(output_dim, output_length, batch_input_shape=None,
             stateful=False, inner_broadcast_state=True, teacher_force=False,
             peek=False, dropout=0.):
 
-    '''
-    Seq2seq model based on [1] and [2].
-    This model has the ability to transfer the encoder hidden state to the decoder's
-    hidden state(specified by the broadcast_state argument). Also, in deep models
-    (depth > 1), the hidden state is propogated throughout the LSTM stack(specified by
-    the inner_broadcast_state argument. You can switch between [1] based model and [2]
-    based model using the peek argument.(peek = True for [2], peek = False for [1]).
-    When peek = True, the decoder gets a 'peek' at the context vector at every timestep.
-
-    [1] based model:
-
-            Encoder:
-            X = Input sequence
-            C = LSTM(X); The context vector
-
-            Decoder:
-    y(t) = LSTM(s(t-1), y(t-1)); Where s is the hidden state of the LSTM (h and c)
-    y(0) = LSTM(s0, C); C is the context vector from the encoder.
-
-    [2] based model:
-
-            Encoder:
-            X = Input sequence
-            C = LSTM(X); The context vector
-
-            Decoder:
-    y(t) = LSTM(s(t-1), y(t-1), C)
-    y(0) = LSTM(s0, C, C)
-    Where s is the hidden state of the LSTM (h and c), and C is the context vector
-    from the encoder.
-
-    Arguments:
-
-    output_dim : Required output dimension.
-    hidden_dim : The dimension of the internal representations of the model.
-    output_length : Length of the required output sequence.
-    depth : Used to create a deep Seq2seq model. For example, if depth = 3,
-                    there will be 3 LSTMs on the enoding side and 3 LSTMs on the
-                    decoding side. You can also specify depth as a tuple. For example,
-                    if depth = (4, 5), 4 LSTMs will be added to the encoding side and
-                    5 LSTMs will be added to the decoding side.
-    broadcast_state : Specifies whether the hidden state from encoder should be
-                                      transfered to the deocder.
-    inner_broadcast_state : Specifies whether hidden states should be propogated
-                                                    throughout the LSTM stack in deep models.
-    peek : Specifies if the decoder should be able to peek at the context vector
-               at every timestep.
-    dropout : Dropout probability in between layers.
-
-
-    '''
+   
 
     if isinstance(depth, int):
         depth = (depth, depth)
@@ -210,31 +160,7 @@ def AttentionSeq2Seq(output_dim, output_length, batch_input_shape=None,
                      batch_size=None, input_shape=None, input_length=None,
                      input_dim=None, hidden_dim=None, depth=1,
                      bidirectional=True, unroll=False, stateful=False, dropout=0.0,):
-    '''
-    This is an attention Seq2seq model based on [3].
-    Here, there is a soft allignment between the input and output sequence elements.
-    A bidirection encoder is used by default. There is no hidden state transfer in this
-    model.
-
-    The  math:
-
-            Encoder:
-            X = Input Sequence of length m.
-            H = Bidirection_LSTM(X); Note that here the LSTM has return_sequences = True,
-            so H is a sequence of vectors of length m.
-
-            Decoder:
-    y(i) = LSTM(s(i-1), y(i-1), v(i)); Where s is the hidden state of the LSTM (h and c)
-    and v (called the context vector) is a weighted sum over H:
-
-    v(i) =  sigma(j = 0 to m-1)  alpha(i, j) * H(j)
-
-    The weight alpha[i, j] for each hj is computed as follows:
-    energy = a(s(i-1), H(j))
-    alpha = softmax(energy)
-    Where a is a feed forward network.
-
-    '''
+    
 
     if isinstance(depth, int):
         depth = (depth, depth)
