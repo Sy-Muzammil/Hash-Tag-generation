@@ -3,10 +3,10 @@ import csv
 import sys
 import re
 #Twitter API credentials
-consumer_key = "TvkFGD16UaOB9GZvoigdAGgGi"
-consumer_secret = "8rB1pd4vVrUYXSfxoyL1OI8WRKfnDmC6Ff2JPHcUnvCENUa4zO"
-access_key = "862555235624960000-MY47PiufxXvBhd35h6zS7d4T9foc3mU"
-access_secret = "1R1f3ABnXMVkZQT9joasPcU1to0aZqiEfIuTAoZDeDZyG"
+consumer_key = ""
+consumer_secret = ""
+access_key = ""
+access_secret = ""
 
 
 USERS = ['YahooBuzz', 'financialbuzz', 'talkSPORT', 'TEDTalks', 'MomCentralChat', 'TheAnfieldChat', 'RipSays', 'KaifSays', 'JarettSays', 'Inc', 'jack', 'om', 'loic', 'bijan', 'kristy', 'jason', 'FastCoLabs', 'medialab', 'YahooLabs', 'IntelLabs', 'gadgetlab', 'NiemanLab', 'garyvee', 'scobleizer', 'mjayliebs', 'xtina', 'birbigs', 'Mickipedia', 'aCreativeNation', 'PamMktgNut', 'MITsmr', 'cnnbrk', 'AMAnet', 'SMExaminer', 'dailymuse', 'dailydot', 'DailyKeller', 'LastWeekTonight', 'NBCNightlyNews', 'thedailybeast', 'ollyofficial', 'TheRealAdamSays', 'iamsrk', 'ontheroadwithiv']
